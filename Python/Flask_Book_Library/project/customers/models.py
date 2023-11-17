@@ -1,5 +1,8 @@
 from project import db, app
 
+def hide_confidential(data:str) -> str:
+    str_len:int = len(data)
+    return '*'*str_len
 
 # Customer model
 class Customer(db.Model):
@@ -22,7 +25,7 @@ class Customer(db.Model):
         print("Getting: " + str(self),flush=True)
 
     def __repr__(self):
-        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {self.pesel}, Street: {self.street}, AppNo: {self.appNo})"
+        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {hide_confidential(self.pesel)}, Street: {hide_confidential(self.street)}, AppNo: {hide_confidential(self.appNo)})"
 
 
 with app.app_context():
