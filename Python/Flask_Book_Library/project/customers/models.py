@@ -29,7 +29,7 @@ class Customer(db.Model):
         print("Getting: " + str(self),flush=True)
 
     def __repr__(self):
-        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {hide_confidential(self.pesel, 0)}, Street: {hide_confidential(self.street, 4)}, AppNo: {hide_confidential(self.appNo, 1)})"
+        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {hide_confidential(self.pesel, 0)}, Street: {hide_confidential(self.street, 4)}, AppNo: {hide_confidential(self.appNo, 2)})"
 
 
 with app.app_context():
