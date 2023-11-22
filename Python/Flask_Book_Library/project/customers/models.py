@@ -1,8 +1,12 @@
 from project import db, app
+import random
 
-def hide_confidential(data:str) -> str:
+def hide_confidential(data:str, up_rand:int) -> str:
     str_len:int = len(data)
-    return '*'*str_len
+    if up_rand == 0:
+        return str_len * '*'
+    randomized_len = random.randrange(str_len, str_len + up_rand)
+    return '*'*randomized_len
 
 # Customer model
 class Customer(db.Model):
@@ -25,7 +29,7 @@ class Customer(db.Model):
         print("Getting: " + str(self),flush=True)
 
     def __repr__(self):
-        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {hide_confidential(self.pesel)}, Street: {hide_confidential(self.street)}, AppNo: {hide_confidential(self.appNo)})"
+        return f"Customer(ID: {self.id}, Name: {self.name}, City: {self.city}, Age: {self.age}, Pesel: {hide_confidential(self.pesel, 0)}, Street: {hide_confidential(self.street, 4)}, AppNo: {hide_confidential(self.appNo, 1)})"
 
 
 with app.app_context():
